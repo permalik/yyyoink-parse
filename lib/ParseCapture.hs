@@ -3,7 +3,15 @@ module ParseCapture where
 import qualified System.Environment as Env
 
 runParseCapture :: IO ()
-runParseCapture = handleArgs >>= print
+runParseCapture =
+  handleArgs >>= displayMessage
+  where
+    displayMessage parsedArgument =
+      case parsedArgument of
+        Left errMessage ->
+          putStrLn $ "Error: " <> errMessage
+        Right filename ->
+          putStrLn $ "Opening file: " <> filename
 
 handleArgs :: IO (Either String FilePath)
 handleArgs =

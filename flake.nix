@@ -36,6 +36,7 @@
             pkgs.haskellPackages.haskell-language-server
             pkgs.haskellPackages.ghcid
             pkgs.haskellPackages.cabal-install
+            pkgs.ormolu
           ];
 
           inputsFrom = builtins.attrValues self.packages.${system};
