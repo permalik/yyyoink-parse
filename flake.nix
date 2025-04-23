@@ -1,5 +1,5 @@
 {
-  description = "yyyoink_parse";
+  description = "yyyoink-parse";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/release-24.11";
@@ -21,7 +21,7 @@
         jailbreakUnbreak = pkg:
           pkgs.haskell.lib.doJailbreak (pkg.overrideAttrs (_: { meta = { }; }));
 
-        packageName = "yyyoink_parse";
+        packageName = "yyyoink-parse";
       in {
           packages.${packageName} = # (ref:haskell-package-def)
           pkgs.haskellPackages.callCabal2nix packageName self rec {
