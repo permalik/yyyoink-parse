@@ -68,7 +68,8 @@ library
     -- other-extensions:
 
     -- Other library packages from which modules are imported.
-    build-depends:    base ^>=4.17.2.1
+    -- build-depends:    base ^>=4.17.2.1
+    build-depends:    base >=4.17.2.1 && <4.19
 
     -- Directories containing source files.
     hs-source-dirs:   lib
@@ -90,8 +91,9 @@ executable yyyoink-parse
     -- other-extensions:
 
     -- Other library packages from which modules are imported.
+    -- base ^>=4.17.2.1,
     build-depends:
-        base ^>=4.17.2.1,
+        base >=4.17.2.1 && <4.19,
         yyyoink-parse
 
     -- Directories containing source files.
@@ -123,6 +125,7 @@ test-suite yyyoink-parse-test
     main-is:          Main.hs
 
     -- Test dependencies.
+    -- base ^>=4.17.2.1,
     build-depends:
-        base ^>=4.17.2.1,
+        base >=4.17.2.1 && <4.19,
         yyyoink-parse
