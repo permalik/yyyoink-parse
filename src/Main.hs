@@ -1,8 +1,6 @@
 module Main where
 
-import qualified MyLib (someFunc)
+import ParseCapture (runParseCapture)
 
 main :: IO ()
-main = do
-  putStrLn "Hello, Haskell!"
-  MyLib.someFunc
+main = ParseCapture.runParseCapture
