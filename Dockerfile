@@ -22,5 +22,5 @@ WORKDIR /bin
 
 # Copy /nix/store
 COPY --from=builder /tmp/nix-store-closure /nix/store
-COPY --from=builder /tmp/build/result /yyyoink_parse
-CMD ["/yyyoink_parse/bin/yyyoink_parse"]
+COPY --from=builder /tmp/build/result /yyyoink-parse
+CMD ["/yyyoink-parse/bin/yyyoink-parse"]

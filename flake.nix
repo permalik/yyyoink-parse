@@ -41,8 +41,7 @@
           inputsFrom = builtins.attrValues self.packages.${system};
 
           shellHook = ''
-            # Custom Prompt
-            export PS1="\n\[\e[1;32m\][devshell](haskell) \w\n❯ \[\e[0m\]"
+              . .bashrc
           '';
         };
       }
