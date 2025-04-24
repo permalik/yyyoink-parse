@@ -4,14 +4,13 @@ import qualified System.Environment as Env
 
 runParseCapture :: IO ()
 runParseCapture =
-  handleArgs >>= displayMessage
-  where
-    displayMessage parsedArgument =
-      case parsedArgument of
-        Left errMessage ->
-          putStrLn $ "Error: " <> errMessage
-        Right filename ->
-          putStrLn $ "Opening file: " <> filename
+  handleArgs
+    >>= \fnameOrError ->
+      case fnameOrError of
+        Left err ->
+          putStrLn $ "Error processing: " <> err
+        Right fname ->
+          readFile fname >>= putStrLn
 
 handleArgs :: IO (Either String FilePath)
 handleArgs =
