@@ -1,24 +1,25 @@
+{-# LANGUAGE TypeApplications #-}
+
 module ParseCapture where
 
 import qualified Control.Exception as Exception
+import qualified Data.Text as Text
+import qualified Data.Text.IO as TextIO
 import qualified System.Environment as Env
 import qualified System.IO.Error as IOError
 
 runParseCapture :: IO ()
 runParseCapture =
-  Exception.catch
-    ( handleArgs
-        >>= \arg ->
-          case arg of
-            Left err ->
-              putStrLn $ "Error processing: " <> err
-            Right fname ->
-              readFile fname >>= putStrLn
-    )
-    handleErr
+  handleIOError $
+    handleArgs
+      >>= eitherToErr
+      >>= TextIO.readFile
+      >>= TextIO.putStrLn
   where
-    handleErr :: IOError -> IO ()
-    handleErr e = putStrLn "An error occurred: " >> print e
+    handleIOError :: IO () -> IO ()
+    handleIOError ioAction =
+      Exception.catch ioAction $
+        \e -> putStrLn "An error occurred: " >> print @IOError e
 
 handleArgs :: IO (Either String FilePath)
 handleArgs =

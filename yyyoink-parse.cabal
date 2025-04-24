@@ -69,7 +69,8 @@ library
 
     -- Other library packages from which modules are imported.
     -- build-depends:    base ^>=4.17.2.1
-    build-depends:    base >=4.17.2.1 && <4.19
+    build-depends:    base >=4.17.2.1 && <4.19,
+                      text
 
     -- Directories containing source files.
     hs-source-dirs:   lib
@@ -94,7 +95,8 @@ executable yyyoink-parse
     -- base ^>=4.17.2.1,
     build-depends:
         base >=4.17.2.1 && <4.19,
-        yyyoink-parse
+        yyyoink-parse,
+        text
 
     -- Directories containing source files.
     hs-source-dirs:   src
